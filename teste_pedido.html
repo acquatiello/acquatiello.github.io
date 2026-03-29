@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Pedido 144407</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .result { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .error { background: #ffe6e6; color: #d00; }
+        .success { background: #e6ffe6; color: #060; }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <h1>Teste de Consulta de Pedido</h1>
+    <button onclick="testarPedido()">Testar Pedido 144407</button>
+    <button onclick="criarPedido()">Criar Novo Pedido</button>
+    <div id="resultado"></div>
+
+    <script>
+        function mostrarResultado(tipo, mensagem) {
+            const div = document.getElementById('resultado');
+            div.className = 'result ' + tipo;
+            div.innerHTML = mensagem;
+        }
+
+        async function testarPedido() {
+            try {
+                mostrarResultado('', 'Consultando pedido...');
+                
+                const response = await fetch('http://localhost:8081/api/orders/144407');
+                const data = await response.text();
+                
+                if (response.ok) {
+                    mostrarResultado('success', 
+                        '<h3>Pedido encontrado!</h3>' +
+                        '<p><strong>Status:</strong> ' + response.status + '</p>' +
+                        '<p><strong>Dados:</strong></p>' +
+                        '<pre>' + JSON.stringify(JSON.parse(data), null, 2) + '</pre>'
+                    );
+                } else {
+                    mostrarResultado('error', 
+                        '<h3>Erro ao consultar pedido</h3>' +
+                        '<p><strong>Status:</strong> ' + response.status + '</p>' +
+                        '<p><strong>Resposta:</strong> ' + data + '</p>'
+                    );
+                }
+            } catch (error) {
+                mostrarResultado('error', 
+                    '<h3>Erro de conexão</h3>' +
+                    '<p><strong>Mensagem:</strong> ' + error.message + '</p>' +
+                    '<p>Verifique se o servidor está rodando em http://localhost:8081</p>'
+                );
+            }
+        }
+
+        async function criarPedido() {
+            try {
+                mostrarResultado('', 'Criando novo pedido...');
+                
+                const novoPedido = {
+                    pedido: '144408',
+                    total: 200.0,
+                    itens: [
+                        { produto: 'Produto Teste 2', quantidade: 1, preco: 200.0 }
+                    ],
+                    cliente: {
+                        nome: 'Cliente Teste 2',
+                        email: 'teste2@email.com'
+                    }
+                };
+
+                const response = await fetch('http://localhost:8081/api/checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(novoPedido)
+                });
+
+                const data = await response.text();
+                
+                if (response.ok) {
+                    mostrarResultado('success', 
+                        '<h3>Pedido criado!</h3>' +
+                        '<p><strong>Status:</strong> ' + response.status + '</p>' +
+                        '<p><strong>Resposta:</strong> ' + data + '</p>'
+                    );
+                } else {
+                    mostrarResultado('error', 
+                        '<h3>Erro ao criar pedido</h3>' +
+                        '<p><strong>Status:</strong> ' + response.status + '</p>' +
+                        '<p><strong>Resposta:</strong> ' + data + '</p>'
+                    );
+                }
+            } catch (error) {
+                mostrarResultado('error', 
+                    '<h3>Erro de conexão</h3>' +
+                    '<p><strong>Mensagem:</strong> ' + error.message + '</p>'
+                );
+            }
+        }
+
+        // Testar automaticamente ao carregar
+        window.onload = function() {
+            mostrarResultado('', 'Clique nos botões acima para testar a API');
+        };
+    </script>
+</body>
+</html>
