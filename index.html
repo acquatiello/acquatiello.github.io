@@ -551,7 +551,7 @@
                                         <div class="product-gallery" data-id="${p.id}">
                                             <picture>
                                                 ${Array.isArray(p.webpImgs) && p.webpImgs.length ? `<source srcset="${p.webpImgs[0]}" type="image/webp">` : ``}
-                                                <img src="${p.img}" class="product-main" id="prod-main-${p.id}" loading="lazy" onerror="this.onerror=null; this.src='htdocs/logo.png';">
+                                                <img src="${p.img}" class="product-main" id="prod-main-${p.id}" loading="lazy" onerror="this.onerror=null; this.src='logo.png';">
                                             </picture>
                                             ${Array.isArray(p.imgs) && p.imgs.length>1 ? `
                                                 <div class="product-thumbs">
