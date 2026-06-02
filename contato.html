@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Acquatiello</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-acqua: #5fd6ff;
+            --texto: #0f172a;
+            --bg-dark: #000c14;
+            --bg-light: #f5f7fa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-light);
+            color: var(--texto);
+        }
+
+        .wrap {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, var(--bg-dark), #00243a);
+            color: var(--azul-acqua);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--azul-acqua);
+            box-shadow: 0 0 0 3px rgba(95,214,255,0.1);
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            appearance: none;
+            border: 1px solid rgba(95,214,255,0.35);
+            background: var(--bg-dark);
+            color: var(--azul-acqua);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            padding: 10px 20px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            border-color: var(--azul-acqua);
+            transform: translateY(-1px);
+            box-shadow: 0 0 15px rgba(95,214,255,0.3);
+            background: rgba(95,214,255,0.1);
+        }
+
+        .btn-home {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .alert {
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .alert-ok {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .alert-err {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .small {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        .success-page {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            font-size: 48px;
+            color: #22c55e;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .card-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><i class="fas fa-envelope"></i> Contato</div>
+                <a class="btn" href="/"><i class="fas fa-home"></i> Início</a>
+            </div>
+            <div class="card-body">
+                <div id="form-container">
+                    <form id="contact-form" method="POST">
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Nome Completo *</label>
+                                <input type="text" name="nome" id="nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail *</label>
+                                <input type="email" name="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <input type="tel" name="tel" id="tel" placeholder="(11) 98539-7740">
+                            </div>
+                            <div class="form-group" style="grid-column: 1 / -1;">
+                                <label>Mensagem *</label>
+                                <textarea name="mensagem" id="mensagem" required></textarea>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Enviar</button>
+                            <a class="btn" href="https://wa.me/5511985397740" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a class="btn" href="/"><i class="fas fa-arrow-left"></i> Voltar</a>
+                        </div>
+                        <div class="small">Sua mensagem será enviada por e-mail. Você também pode nos contactar pelo WhatsApp.</div>
+                    </form>
+                </div>
+                <div id="success-container" style="display: none;" class="success-page">
+                    <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                    <h2>Mensagem Enviada!</h2>
+                    <p>Obrigado por entrar em contato. Responderemos em breve.</p>
+                    <div class="small" style="margin-top: 20px;">
+                        Para respostas mais rápidas, você pode também nos contactar via WhatsApp.
+                    </div>
+                    <div class="actions" style="justify-content: center; margin-top: 30px;">
+                        <a class="btn" href="/"><i class="fas fa-home"></i> Voltar para Home</a>
+                        <a class="btn" href="https://wa.me/5511985397740" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Usar FormSubmit.co para enviar o formulário (serviço gratuito)
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const formData = new FormData(form);
+            
+            // Mostrar mensagem de sucesso localmente
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('success-container').style.display = 'block';
+            
+            // Opcional: enviar para um serviço de e-mail (descomente a linha abaixo)
+            // fetch('https://formspree.io/f/YOUR_FORM_ID', {
+            //     method: 'POST',
+            //     body: formData
+            // }).catch(err => console.log('Erro ao enviar:', err));
+        });
+
+        // Máscaras de entrada
+        const telInput = document.getElementById('tel');
+        if (telInput) {
+            telInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    if (value.length <= 2) {
+                        value = '(' + value;
+                    } else if (value.length <= 6) {
+                        value = '(' + value.substring(0, 2) + ') ' + value.substring(2);
+                    } else if (value.length <= 10) {
+                        value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 6) + '-' + value.substring(6);
+                    } else {
+                        value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + '-' + value.substring(7, 11);
+                    }
+                }
+                e.target.value = value;
+            });
+        }
+    </script>
+</body>
+</html>
