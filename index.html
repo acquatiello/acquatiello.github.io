@@ -1,77 +1,349 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Acquatiello - Site</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .cat-bar { border: 1px solid #ccc; }
-        .section-padding { margin: 20px; }
-        .btn-buy { transition: background-color 0.3s ease; }
-        /* Add other CSS styles here */
+        :root {
+            --azul-acqua: #5fd6ff;
+            --texto: #0f172a;
+            --bg-dark: #000c14;
+            --bg-light: #f5f7fa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-light);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--bg-dark), #00243a);
+            color: var(--azul-acqua);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        nav a {
+            color: var(--azul-acqua);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #000c14, #1a3a52);
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+            margin-top: 20px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--azul-acqua);
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--azul-acqua);
+            color: var(--bg-dark);
+            padding: 12px 30px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid var(--azul-acqua);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--azul-acqua);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(95,214,255,0.3);
+        }
+
+        .products-section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--bg-dark);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+            border-color: var(--azul-acqua);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--bg-dark);
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--azul-acqua);
+            margin-bottom: 15px;
+        }
+
+        .btn-buy {
+            display: block;
+            width: 100%;
+            background: var(--bg-dark);
+            color: var(--azul-acqua);
+            border: 1px solid rgba(95,214,255,0.35);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-buy:hover {
+            background: var(--azul-acqua);
+            color: var(--bg-dark);
+            border-color: var(--azul-acqua);
+        }
+
+        footer {
+            background: var(--bg-dark);
+            color: var(--azul-acqua);
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--azul-acqua);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav a {
+                margin-left: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div id="admin-products">
-        <!-- Admin product content goes here -->
-    </div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    Acquatiello
+                </div>
+                <nav>
+                    <a href="#home">Home</a>
+                    <a href="#produtos">Produtos</a>
+                    <a href="contato.html">Contato</a>
+                    <a href="https://wa.me/5511985397740" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero" id="home">
+            <h1>Bem-vindo à Acquatiello</h1>
+            <p>Produtos de qualidade para você e sua família</p>
+            <a href="#produtos" class="cta-button"><i class="fas fa-shopping-cart"></i> Ver Produtos</a>
+        </section>
+
+        <section class="products-section" id="produtos">
+            <h2 class="section-title">Nossos Produtos</h2>
+            <div class="products-grid" id="products-container">
+                <!-- Produtos carregados via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="contato.html"><i class="fas fa-envelope"></i> Contato</a>
+                <a href="https://wa.me/5511985397740" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="#"><i class="fas fa-phone"></i> (11) 98539-7740</a>
+            </div>
+            <p>&copy; 2026 Acquatiello. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
     <script>
-        function mapCategoria() {
-            // Mapping categories implementation
-        }
-
-        function gerarCSV() {
-            // CSV generation implementation
-        }
-
-        function preencherRelatorio() {
-            // Fill report implementation
-        }
-
-        function baixarRelatorio() {
-            // Download report implementation
-        }
+        const produtos = [
+            {
+                id: 1,
+                nome: "Produto Premium 1",
+                preco: "R$ 99,90",
+                categoria: "Premium"
+            },
+            {
+                id: 2,
+                nome: "Produto Premium 2",
+                preco: "R$ 149,90",
+                categoria: "Premium"
+            },
+            {
+                id: 3,
+                nome: "Produto Standard 1",
+                preco: "R$ 49,90",
+                categoria: "Standard"
+            },
+            {
+                id: 4,
+                nome: "Produto Standard 2",
+                preco: "R$ 59,90",
+                categoria: "Standard"
+            }
+        ];
 
         function renderizarProdutos() {
-            // Render products implementation
+            const container = document.getElementById('products-container');
+            container.innerHTML = produtos.map(produto => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="logo.png" alt="${produto.nome}" onerror="this.style.display='none'">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${produto.nome}</div>
+                        <div style="font-size: 12px; color: #999; margin-bottom: 10px;">${produto.categoria}</div>
+                        <div class="product-price">${produto.preco}</div>
+                        <button class="btn-buy" onclick="adicionarAoCarrinho(${produto.id})">
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function limparCarrinho() {
-            // Clear cart implementation
+        function adicionarAoCarrinho(produtoId) {
+            const produto = produtos.find(p => p.id === produtoId);
+            alert(`${produto.nome} adicionado ao carrinho!\n\nPara finalizar a compra, entre em contato via WhatsApp.`);
+            window.open('https://wa.me/5511985397740?text=Gostaria%20de%20comprar:%20' + encodeURIComponent(produto.nome), '_blank');
         }
 
-        function consultarPedido() {
-            // Consult order implementation
-        }
-
-        function abrirStatusAdmin() {
-            // Open admin status implementation
-        }
-
-        function fecharStatusAdmin() {
-            // Close admin status implementation
-        }
-
-        function atualizarStatusPedido() {
-            // Update order status implementation
-        }
-
-        function alterarQuantidade() {
-            // Change quantity implementation
-        }
-
-        function removerItem() {
-            // Remove item implementation
-        }
-
-        // Error handling for product thumbs
-        const thumbs = document.querySelectorAll('.product-thumbs img');
-        thumbs.forEach(function(thumb) {
-            thumb.onerror = function() {
-                this.src = 'default-image.jpg';
-            };
-        });
+        document.addEventListener('DOMContentLoaded', renderizarProdutos);
     </script>
 </body>
 </html>
